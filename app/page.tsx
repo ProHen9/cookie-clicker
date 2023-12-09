@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <p>{click}</p>
       <button
-        class="bg-black rounded-md p-5 text-white m-5"
+        className="bg-black rounded-md p-5 text-white m-5"
         onClick={() => setClick(click + 1)}
       >
         hochzählen
