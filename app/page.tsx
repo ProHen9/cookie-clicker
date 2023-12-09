@@ -5,7 +5,12 @@ export default function Home() {
   return (
     <div>
       <p>{click}</p>
-      <button onClick={() => setClick(click + 1)}>hochzählen</button>
+      <button
+        class="bg-black rounded-md p-5 text-white m-5"
+        onClick={() => setClick(click + 1)}
+      >
+        hochzählen
+      </button>
     </div>
   );
 }
