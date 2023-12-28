@@ -2,3 +2,9 @@
 # cookie
 [🌐website](https://cookie.henri.gg)
 ---
+### How to cheat:
+I implemented a method, where you can change a number and cheat. I used the 
+```js
+import {useState} from "react"
+const [counter, setCounter] = useState<number>(0) // <= change the value in the function, to start at a higher number
+```
