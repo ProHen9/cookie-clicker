@@ -1,7 +1,4 @@
-# a minimal cookie-clicker.
-A minimal Cookie Clicker made for the iPads in schools. This was coded for fun and isn't really good. This was created used Codesandbox in school, with the badest keyboard possible. 
-
-How to play: go on the [website](https://cookie.henri.gg) => https://cookie.henri.gg and play.
-
-## How to cheat:
-Fork this repo, change under the app/page.tsx file the commentared value to your wanted number and you're done.
+![image](https://github.com/i-am-henri/cookie/assets/98414850/588ec2bc-ac5b-40b7-b101-383da87ba0e0)
+# cookie
+[🌐website](https://cookie.henri.gg)
+---
