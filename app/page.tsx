@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function Home() {
   const [ButtonPositionSmall, setButtonPositionSmall] = useState<boolean>(false)
   // insert a number, where the cookie-clicker is counting on
-  const [click, setClick] = useState<number>(0);
+  const [click, setClick] = useState<number>(0); // <= change this number to cheat. You will start at a higher count.
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
       <motion.p initial={{opacity: 0}} animate={{opacity: 1}} onClick={() => setButtonPositionSmall(!ButtonPositionSmall)} className="absolute top-2 right-2 dark:text-white underline cursor-pointer" >change button theme</motion.p>
