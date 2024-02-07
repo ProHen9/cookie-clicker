@@ -20,6 +20,7 @@ export default function Home() {
       initial={{opacity: 0, x: "-50px"}}
       animate={{x: 0, opacity: 1}}
       href="https://github.com/i-am-henri/cookie-clicker" className="absolute bottom-2 right-2 underline dark:text-white" target="_blank">see github</motion.a>
+      <p>Herr Rüdiger und Felix haben beide über 1000 geschafft</p>
     </div>
   );
 }
