@@ -2,7 +2,7 @@ import { DatabaseRow } from "@/schema/types";
 import HeroSection from "./hero";
 import { cookies } from "next/headers";
 export default async function Home() {
-  const userId = cookies().get("userId")
+  const userId = cookies().get("userId")?.value
   if (!userId) {
     // handle later, when the score will saved
   }
@@ -19,8 +19,8 @@ export default async function Home() {
           {
             data.data?.map((data) => {
               return (
-                <li className=" dark:text-white" key={data._id}>
-                  {data.name} : {data.count}
+                <li className=" dark:text-white" style={{backgroundColor: userId == data._id? "green": "transparent"}} key={data._id}>
+                  {data.name} : {data.count} { userId == data._id? "| you": ""}
                 </li>
               )
             })
