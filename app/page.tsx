@@ -1,26 +1,20 @@
-"use client";
+"use client"
 import { useState } from "react";
 import { motion } from "framer-motion";
-export default function Home() {
+export default async function Home() {
+  const data = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`)
   const [ButtonPositionSmall, setButtonPositionSmall] = useState<boolean>(false)
   // insert a number, where the cookie-clicker is counting on
   const [click, setClick] = useState<number>(0); // <= change this number to cheat. You will start at a higher count.
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <motion.p initial={{opacity: 0}} animate={{opacity: 1}} onClick={() => setButtonPositionSmall(!ButtonPositionSmall)} className="absolute top-2 right-2 dark:text-white underline cursor-pointer" >change button theme</motion.p>
-      <motion.p initial={{opacity: 0}} style={{ display: ButtonPositionSmall? "none": "block"}} animate={{opacity: 1}} className="text-black dark:text-white">{click}</motion.p>
-      <motion.button
-        className="bg-black rounded-md p-3 text-white m-5 dark:bg-white dark:text-black flex"
-        onClick={() => setClick(click + 1)}
-      >
-        <p className=" text-white dark:text-black mr-3" style={{ display: ButtonPositionSmall? "block": "none"}}>{click}</p>
-        counting
-      </motion.button>
-      <motion.a
-      initial={{opacity: 0, x: "-50px"}}
-      animate={{x: 0, opacity: 1}}
-      href="https://github.com/i-am-henri/cookie-clicker" className="absolute bottom-2 right-2 underline dark:text-white" target="_blank">see github</motion.a>
-      <p>Herr Rüdiger und Felix haben beide über 1000 geschafft</p>
+      
+      <section className="flex flex-col items-center justify-center w-full min-h-screen">
+        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-black dark:text-white">leaderboard</motion.h2>
+        <ol>
+
+        </ol>
+      </section>
     </div>
   );
 }
