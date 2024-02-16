@@ -11,7 +11,10 @@ export default async function Home() {
   if (!userId) {
     // handle later, when the score will saved
   }
-  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, { cache: 'no-store' })
+  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {next: {revalidate: 60}})
+  if (!dataRaw.ok) {
+    throw new Error("failes to get leaderboard data.")
+  }
   const data: DatabaseRow = await dataRaw.json() as DatabaseRow
   data.data?.sort((a, b) => b.count - a.count);
   console.log(data)
