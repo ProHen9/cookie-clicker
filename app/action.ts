@@ -2,9 +2,12 @@
 
 import { cookies } from "next/headers"
 
-export async function SaveScore(score: number, user: string | undefined) {
+export async function SaveScore(score: number, user: string | undefined, name: string | undefined) {
     cookies().set("count", score.toString())
-
+    if (!user && !name) {
+        //FIXME: user will nicht auf das Leaderboard
+        return
+    }
     if (!user) {
         const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {
             method: "POST",

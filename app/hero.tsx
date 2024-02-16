@@ -4,6 +4,7 @@ import { SaveScore } from "./action";
 interface Props {
     count: number;
     user: string | undefined;
+    name: string | undefined;
 }
 export default function HeroSection(props: Props) {
     const [ButtonPositionSmall, setButtonPositionSmall] = useState<boolean>(false)
@@ -11,7 +12,7 @@ export default function HeroSection(props: Props) {
     const [click, setClick] = useState<number>(props.count); // <= change this number to cheat. You will start at a higher count.
     useEffect(() => {
         const timeout = setTimeout(() => {
-          SaveScore(click,  props.user)
+          SaveScore(click,  props.user, props.name)
         }, 1000); // Zeit in Millisekunden
     
         return () => clearTimeout(timeout);
