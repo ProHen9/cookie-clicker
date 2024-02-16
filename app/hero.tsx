@@ -1,13 +1,21 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { SaveScore } from "./action";
 interface Props {
     count: number;
+    user: string | undefined;
 }
 export default function HeroSection(props: Props) {
     const [ButtonPositionSmall, setButtonPositionSmall] = useState<boolean>(false)
     // insert a number, where the cookie-clicker is counting on
     const [click, setClick] = useState<number>(props.count); // <= change this number to cheat. You will start at a higher count.
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+          SaveScore(click,  props.user)
+        }, 1000); // Zeit in Millisekunden
     
+        return () => clearTimeout(timeout);
+      }, [click]);
     return (
         <section className="flex flex-col items-center justify-center w-full min-h-screen">
             <p  onClick={() => setButtonPositionSmall(!ButtonPositionSmall)} className="absolute top-2 right-2 dark:text-white underline cursor-pointer" >change button theme</p>

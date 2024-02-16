@@ -17,7 +17,7 @@ export default async function Home() {
   console.log(data)
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <HeroSection count={value | 0} />
+      <HeroSection count={value | 0} user={userId} />
       <section className="flex flex-col items-center justify-center w-full min-h-screen">
         <h2 className="text-black dark:text-white text-4xl">leaderboard</h2>
         <ol >
