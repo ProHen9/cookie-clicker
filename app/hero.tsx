@@ -1,16 +1,13 @@
 "use client"
-import { cookies } from "next/headers";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 interface Props {
-    count: number,
+    count: number;
 }
 export default function HeroSection(props: Props) {
     const [ButtonPositionSmall, setButtonPositionSmall] = useState<boolean>(false)
     // insert a number, where the cookie-clicker is counting on
     const [click, setClick] = useState<number>(props.count); // <= change this number to cheat. You will start at a higher count.
-    useEffect(() => {
-        cookies().set("count", click.toString())
-    }, [click])
+    
     return (
         <section className="flex flex-col items-center justify-center w-full min-h-screen">
             <p  onClick={() => setButtonPositionSmall(!ButtonPositionSmall)} className="absolute top-2 right-2 dark:text-white underline cursor-pointer" >change button theme</p>

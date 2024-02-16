@@ -1,10 +1,13 @@
+"use server"
 import { DatabaseRow } from "@/schema/types";
 import HeroSection from "./hero";
 import { cookies } from "next/headers";
+import { SetValue } from "./action";
 export default async function Home() {
   const userId = cookies().get("userId")?.value
-  const value: number = +cookies().get("count")?.value | 0
-  if (!value) cookies().set("count", "0")
+  const valueCookie: string | undefined = cookies().get("count")?.value
+  const value = valueCookie? parseInt(valueCookie) : 0
+
   if (!userId) {
     // handle later, when the score will saved
   }
