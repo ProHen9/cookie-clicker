@@ -23,3 +23,6 @@ export async function SaveScore(score: number, user: string | undefined, name: s
 export async function SetValue() {
     cookies().set("count", "0")
 }
+export async function SaveName(name: string, userId: string | undefined) {
+
+}
