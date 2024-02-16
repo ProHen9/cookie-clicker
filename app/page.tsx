@@ -3,6 +3,7 @@ import { DatabaseRow } from "@/schema/types";
 import HeroSection from "./hero";
 import { cookies } from "next/headers";
 import { SetValue } from "./action";
+import NameInput from "./name-input";
 export default async function Home() {
   const name = cookies().get("name")?.value
   const userId = cookies().get("userId")?.value
@@ -21,6 +22,7 @@ export default async function Home() {
   console.log(data)
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
+      <NameInput  name={undefined}/>
       <HeroSection name={name} count={value | 0} user={userId} />
       <section className="flex flex-col items-center justify-center w-full min-h-screen">
         <h2 className="text-black dark:text-white text-4xl">leaderboard</h2>
