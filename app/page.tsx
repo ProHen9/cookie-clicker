@@ -19,7 +19,6 @@ export default async function Home() {
   }
   const data: DatabaseRow = await dataRaw.json() as DatabaseRow
   data.data?.sort((a, b) => b.count - a.count);
-  console.log(data)
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
       <NameInput userId={userId} name={undefined}/>

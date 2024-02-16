@@ -10,6 +10,7 @@ export default function NameInput(props: Props) {
     const [content, setContent] = useState<string>(props.name || "")
     useEffect(() => {
         const timeout = setTimeout(() => {
+            console.log("save")
           SaveName(content,  props.userId)
         }, 1000); // Zeit in Millisekunden
     
