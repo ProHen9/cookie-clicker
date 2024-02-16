@@ -3,6 +3,8 @@ import HeroSection from "./hero";
 import { cookies } from "next/headers";
 export default async function Home() {
   const userId = cookies().get("userId")?.value
+  const value: number = +cookies().get("count")?.value | 0
+  if (!value) cookies().set("count", "0")
   if (!userId) {
     // handle later, when the score will saved
   }
@@ -12,7 +14,7 @@ export default async function Home() {
   console.log(data)
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <HeroSection />
+      <HeroSection count={value | 0} />
       <section className="flex flex-col items-center justify-center w-full min-h-screen">
         <h2 className="text-black dark:text-white text-4xl">leaderboard</h2>
         <ol >
