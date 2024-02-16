@@ -11,7 +11,7 @@ export default async function Home() {
   if (!userId) {
     // handle later, when the score will saved
   }
-  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {next: {revalidate: 60}})
+  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {next: {revalidate: 10}})
   if (!dataRaw.ok) {
     throw new Error("failes to get leaderboard data.")
   }

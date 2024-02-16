@@ -11,10 +11,7 @@ export async function SaveScore(score: number, user: string | undefined) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                name: user,
-                count: score
-            })
+            body: JSON.stringify([{"name": "woow","count":score.toString()}])
         })
         const data = await dataRaw.json()
         console.log(data)
