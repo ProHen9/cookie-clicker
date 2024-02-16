@@ -18,8 +18,17 @@ export async function SaveScore(score: number, userId: string | undefined, name:
             body: JSON.stringify([{"name": name,"count":score.toString()}])
         })
         const data = await dataRaw.json()
-        
-        console.log(dataRaw)
+        cookies().set("userId", JSON.stringify(data[0]._id))
+        console.log(JSON.stringify(data))
+    }
+    if (userId && name) {
+        const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify([{"_id": userId,"name": name,"count":score.toString()}])
+        })
     }
 }
 export async function SetValue() {

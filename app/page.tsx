@@ -2,7 +2,6 @@
 import { DatabaseRow } from "@/schema/types";
 import HeroSection from "./hero";
 import { cookies } from "next/headers";
-import { SetValue } from "./action";
 import NameInput from "./name-input";
 export default async function Home() {
   const name = cookies().get("name")?.value
@@ -13,7 +12,7 @@ export default async function Home() {
   if (!userId) {
     // handle later, when the score will saved
   }
-  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {next: {revalidate: 10}})
+  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`,{cache: "no-cache"})
   if (!dataRaw.ok) {
     throw new Error("failes to get leaderboard data.")
   }
