@@ -20,7 +20,7 @@ export default async function Home() {
   data.data?.sort((a, b) => b.count - a.count);
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <NameInput userId={userId} name={undefined}/>
+      <NameInput userId={userId} name={name}/>
       <HeroSection name={name} count={value | 0} user={userId} />
       <section className="flex flex-col items-center justify-center w-full min-h-screen">
         <h2 className="text-black dark:text-white text-4xl">leaderboard</h2>
