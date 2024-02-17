@@ -26,14 +26,12 @@ export async function SaveScore(score: number, userId: string | undefined, name:
     }
     if (userId && name) {
         //FIXME: score wird geupdatet
-        console.log("update")
-        console.log(score, name, )
         const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ _id: cookies().get("userId"),"name": name, "count": score })
+            body: JSON.stringify({ _id: cookies().get("userId")?.value,"name": name, "count": score })
         })
         console.log(dataRaw)
         console.log(await dataRaw.json())
@@ -51,6 +49,7 @@ export async function SaveName(name: string, userId: string | undefined) {
         //FIXME: user ist schon auf dem Leaderboard und wird geupdatet
         const valueCookie: string | undefined = cookies().get("count")?.value
         const value = valueCookie ? parseInt(valueCookie) : 0
+        console.log(value)
         if (value == 0) {
             //FIXME: User hat seinem Namen geupdated, allerdings ist seine Anzahl auf 0
             return
@@ -60,7 +59,7 @@ export async function SaveName(name: string, userId: string | undefined) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify([{ "_id": userId, "name": name, "count": value}])
+            body: JSON.stringify({ "_id": userId, "name": name, "count": value})
         })
         if (!dataRaw.ok) {
             throw new Error("Failes to update name.")
