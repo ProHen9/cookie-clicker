@@ -19,7 +19,6 @@ export async function SaveScore(score: number, userId: string | undefined, name:
         })
         const data = await dataRaw.json()
         cookies().set("userId", JSON.stringify(data[0]._id))
-        console.log(JSON.stringify(data))
     }
     if (userId && name) {
         const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {
@@ -49,8 +48,11 @@ export async function SaveName(name: string, userId: string | undefined) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify([{ "_id": userId, "name": name, "count": value }])
+            body: JSON.stringify([{ "_id": userId, "name": name, "count": value.toString() }])
         })
+        if (!dataRaw.ok) {
+            throw new Error("Failes to update name.")
+        }
 
     }
 }

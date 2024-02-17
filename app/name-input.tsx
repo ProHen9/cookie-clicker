@@ -17,7 +17,7 @@ export default function NameInput(props: Props) {
       }
         const timeout = setTimeout(() => {
           SaveName(content,  props.userId)
-        }, 1000); // Zeit in Millisekunden
+        }, 1500); // Zeit in Millisekunden
     
         return () => clearTimeout(timeout);
       }, [content]);
