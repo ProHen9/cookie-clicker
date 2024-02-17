@@ -15,19 +15,31 @@ export async function SaveScore(score: number, userId: string | undefined, name:
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify([{ "name": name, "count": score.toString() }])
+            body: JSON.stringify([{ "name": name, "count": score }])
         })
+        if (!dataRaw.ok) {
+            throw new Error("Failed to save score.")
+        }
         const data = await dataRaw.json()
-        cookies().set("userId", JSON.stringify(data[0]._id))
+        console.log(data)
+        cookies().set("userId", data[0]._id)
     }
     if (userId && name) {
+        //FIXME: score wird geupdatet
+        console.log("update")
+        console.log(score, name, )
         const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify([{ "_id": userId, "name": name, "count": score.toString() }])
+            body: JSON.stringify({ _id: cookies().get("userId"),"name": name, "count": score })
         })
+        console.log(dataRaw)
+        console.log(await dataRaw.json())
+        if (!dataRaw.ok) {
+            console.log("error")
+        }
     }
 }
 export async function SetValue() {
@@ -48,7 +60,7 @@ export async function SaveName(name: string, userId: string | undefined) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify([{ "_id": userId, "name": name, "count": value.toString() }])
+            body: JSON.stringify([{ "_id": userId, "name": name, "count": value}])
         })
         if (!dataRaw.ok) {
             throw new Error("Failes to update name.")

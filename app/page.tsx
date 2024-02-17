@@ -28,7 +28,7 @@ export default async function Home() {
           {
             data.data?.map((data) => {
               return (
-                <li className=" dark:text-white" style={{backgroundColor: userId == data._id? "green": "transparent"}} key={data._id}>
+                <li className=" dark:text-white rounded-md p-2" style={{backgroundColor: userId == data._id? "green": "transparent",}} key={data._id}>
                   {data.name} : {data.count} { userId == data._id? "| you": ""}
                 </li>
               )
