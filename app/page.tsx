@@ -23,7 +23,7 @@ export default async function Home() {
   data.data?.sort((a, b) => b.count - a.count);
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <Alert className="w-auto mx-[30px] mt-[80px] lg:mt-[30px] lg:w-[55%] xl:w-auto" >
+      <Alert className="w-auto mx-[30px] top-0 mt-[80px] lg:mt-[30px] lg:w-[55%] xl:w-auto absolute" >
         <Info className="h-4 w-4" />
         <AlertTitle>Neues Update!</AlertTitle>
         <AlertDescription>
