@@ -20,7 +20,7 @@ export default function HeroSection(props: Props) {
       }, [click]);
     return (
         <section className="flex flex-col items-center justify-center w-full min-h-screen">
-            <p  onClick={() => setButtonPositionSmall(!ButtonPositionSmall)} className="absolute top-2 right-2 dark:text-white underline cursor-pointer" >change button theme</p>
+            <Button  onClick={() => setButtonPositionSmall(!ButtonPositionSmall)} className="absolute top-2 right-2 dark:text-white underline cursor-pointer" >change button theme</Button>
             <p style={{ display: ButtonPositionSmall ? "none" : "block" }}  className="text-black dark:text-white">{click}</p>
             <Button
                 className="bg-black rounded-md p-3 text-white m-5 dark:bg-white dark:text-black flex"
@@ -29,9 +29,6 @@ export default function HeroSection(props: Props) {
                 <p className=" text-white dark:text-black mr-3" style={{ display: ButtonPositionSmall ? "block" : "none" }}>{click}</p>
                 counting
             </Button>
-            <a
-                
-                href="https://github.com/i-am-henri/cookie-clicker" className="absolute bottom-2 right-2 underline dark:text-white" target="_blank">see github</a>
         </section>
     )
 }
