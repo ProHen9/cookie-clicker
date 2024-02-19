@@ -3,17 +3,19 @@ import { DatabaseRow } from "@/schema/types";
 import HeroSection from "./hero";
 import { cookies } from "next/headers";
 import NameInput from "./name-input";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Info, Terminal } from "lucide-react";
 export default async function Home() {
   const name = cookies().get("name")?.value
   const userId = cookies().get("userId")?.value
   const valueCookie: string | undefined = cookies().get("count")?.value
-  const value = valueCookie? parseInt(valueCookie) : 0
+  const value = valueCookie ? parseInt(valueCookie) : 0
   const positionRaw = cookies().get("position")?.value
-  
+
   if (!userId) {
     // handle later, when the score will saved
   }
-  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`,{cache: "no-cache"})
+  const dataRaw = await fetch(`https://v1.appbackend.io/v1/rows/${process.env.TABLE_ID}?api_key=${process.env.API_KEY}`, { cache: "no-cache" })
   if (!dataRaw.ok) {
     throw new Error("failes to get leaderboard data.")
   }
@@ -21,16 +23,24 @@ export default async function Home() {
   data.data?.sort((a, b) => b.count - a.count);
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <NameInput userId={userId} name={name}/>
-      <HeroSection position={positionRaw == "true"? true: positionRaw == "false"? false: undefined} name={name} count={value | 0} user={userId} />
+      <Alert className="w-auto mx-[30px] mt-[80px] lg:mt-[30px] lg:w-[55%] xl:w-auto" >
+        <Info className="h-4 w-4" />
+        <AlertTitle>Neues Update!</AlertTitle>
+        <AlertDescription>
+          Das Design der Buttons wurde geändert und nun wird das ändern des Button Themes gespeichert.
+        </AlertDescription>
+      </Alert>
+
+      <NameInput userId={userId} name={name} />
+      <HeroSection position={positionRaw == "true" ? true : positionRaw == "false" ? false : undefined} name={name} count={value | 0} user={userId} />
       <section className="flex flex-col items-center justify-center w-full min-h-screen">
         <h2 className="text-black dark:text-white text-4xl">leaderboard</h2>
         <ol >
           {
             data.data?.map((data) => {
               return (
-                <li className=" dark:text-white rounded-md p-2" style={{backgroundColor: userId == data._id? "green": "transparent",}} key={data._id}>
-                  {data.name} : {data.count} { userId == data._id? "| you": ""}
+                <li className=" dark:text-white rounded-md p-2" style={{ backgroundColor: userId == data._id ? "green" : "transparent", }} key={data._id}>
+                  {data.name} : {data.count} {userId == data._id ? "| you" : ""}
                 </li>
               )
             })
