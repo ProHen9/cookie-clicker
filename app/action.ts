@@ -67,3 +67,6 @@ export async function SaveName(name: string, userId: string | undefined) {
 
     }
 }
+export async function ChangePosition(position: boolean) {
+    cookies().set("position", position.toString())
+}
