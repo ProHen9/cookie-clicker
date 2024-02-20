@@ -30,7 +30,7 @@ export default function HeroSection(props: Props) {
             <p style={{ display: ButtonPositionSmall ? "block" : "none" }}  className="text-black dark:text-white">{click}</p>
             <Button
                 className="bg-black scale-200 rounded-md p-3 text-white m-5 dark:bg-white dark:text-black flex"
-                onClick={() => setClick(click + 1)}
+                onClick={() => setClick(click - 1)}
             >
                 <p className=" text-white dark:text-black mr-3" style={{ display: ButtonPositionSmall ? "none" : "block" }}>{click}</p>
                 counting
