@@ -23,14 +23,6 @@ export default async function Home() {
   data.data?.sort((a, b) => b.count - a.count);
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-black">
-      <Alert className="w-auto mx-[30px] top-0 mt-[80px] lg:mt-[30px] lg:w-[55%] xl:w-auto absolute" >
-        <Info className="h-4 w-4" />
-        <AlertTitle>Neues Update!</AlertTitle>
-        <AlertDescription>
-          Das Design der Buttons wurde geändert und nun wird das ändern des Button Themes gespeichert.
-        </AlertDescription>
-      </Alert>
-
       <NameInput userId={userId} name={name} />
       <HeroSection position={positionRaw == "true" ? true : positionRaw == "false" ? false : undefined} name={name} count={value | 0} user={userId} />
       <section className="flex flex-col items-center justify-center w-full min-h-screen">
